@@ -22,14 +22,17 @@ def compute_r_nk(n,k, alpha, theta, theta_0=0):
     )
 
 
-def p_alpha_j(alpha, j):
-    return alpha * np.exp(loggamma(j - alpha) - loggamma(j + 1) - loggamma(1 - alpha))
+# def p_alpha_j(alpha, j):
+#     return alpha * np.exp(loggamma(j - alpha) - loggamma(j + 1) - loggamma(1 - alpha))
 
-def fisher_info(alpha, iter_num=100000):
-    assert 0 < alpha and alpha < 1
+# def fisher_info(alpha, iter_num=100000):
+#     assert 0 < alpha and alpha < 1
     
-    N = np.arange(1, iter_num + 1)
-    return alpha**(-2) + p_alpha_j(alpha, N)@(1/((N-alpha)*alpha))
+#     N = np.arange(1, iter_num + 1)
+#     return alpha**(-2) + p_alpha_j(alpha, N)@(1/((N-alpha)*alpha))
+
+def fisher_info(alpha):
+    return np.pi/alpha/np.pi(alpha*np.pi)
 
 def grad_alpha(alpha, C):
     k = len(C)
